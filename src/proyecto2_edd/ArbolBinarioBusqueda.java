@@ -207,4 +207,28 @@ public class ArbolBinarioBusqueda {
         }
     }
     
+    public void recorridoSpec(ListaEnlazada list, NodoABB node, String habitacion_) {
+        try {
+            recorridoSpec(list, node.hijo_izq, habitacion_);
+        }
+        catch(NullPointerException e) {
+            
+        }
+        
+        if(node.client.habitacion.equals(habitacion_)) {
+            list.insertarUltimo(node.client);
+        }
+        
+        try {
+            recorridoSpec(list, node.hijo_der, habitacion_);
+        }
+        catch(NullPointerException e) {
+            
+        }
+    }
+    
+    public NodoABB getRaiz() {
+        return raiz;
+    }
+    
 }

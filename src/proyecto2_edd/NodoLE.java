@@ -17,4 +17,8 @@ public class NodoLE {
         this.next = next;
     }
     
+    public ClienteHospedado getClient() {
+        return client;
+    }
+    
 }

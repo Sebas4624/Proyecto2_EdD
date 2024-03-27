@@ -83,17 +83,12 @@ public class TablaHash {
         }
     }
     
-    public void habitacionesUsadasAct(){
-        for(int i = 0; i < tSize; i++) {
-            System.out.println("/---/---/---/---/");
-            for(int j = 0; j < lista_[i].size(); j++) {
-                System.out.println((lista_[i].getNodoLE(j).client.habitacion) + " -> En uso");
-            }
-        }
-    }
-    
     public String getHabitacionEnUso(int inX_i, int inX_j) {
         return lista_[inX_i].getNodoLE(inX_j).client.habitacion;
+    }
+    
+    public ClienteHospedado getHabitacionesAux(int inX_i, int inX_j) {
+        return lista_[inX_i].getNodoLE(inX_j).client;
     }
     
 }

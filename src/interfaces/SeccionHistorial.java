@@ -2,6 +2,7 @@
 package interfaces;
 
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import proyecto2_edd.*;
@@ -32,28 +33,28 @@ public class SeccionHistorial extends javax.swing.JPanel {
     private void initComponents() {
 
         Container = new javax.swing.JPanel();
-        ApellidoLabel = new javax.swing.JLabel();
-        ApellidoTextField = new javax.swing.JTextField();
-        Separador2 = new javax.swing.JSeparator();
+        HabitacionLabel = new javax.swing.JLabel();
+        HabitacionTextField = new javax.swing.JTextField();
+        Separador = new javax.swing.JSeparator();
         Buscar = new javax.swing.JPanel();
         BuscarLabel = new javax.swing.JLabel();
-        EstadoLabel = new javax.swing.JLabel();
+        HistoricoLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
 
         Container.setBackground(new java.awt.Color(65, 65, 65));
 
-        ApellidoLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        ApellidoLabel.setForeground(new java.awt.Color(255, 255, 255));
-        ApellidoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ApellidoLabel.setText("Apellido");
+        HabitacionLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        HabitacionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        HabitacionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HabitacionLabel.setText("Habitación");
 
-        ApellidoTextField.setBackground(new java.awt.Color(65, 65, 65));
-        ApellidoTextField.setForeground(new java.awt.Color(180, 180, 180));
-        ApellidoTextField.setToolTipText("Ingrese el apellido del cliente");
-        ApellidoTextField.setBorder(null);
+        HabitacionTextField.setBackground(new java.awt.Color(65, 65, 65));
+        HabitacionTextField.setForeground(new java.awt.Color(180, 180, 180));
+        HabitacionTextField.setToolTipText("Ingrese la habitación a visualizar");
+        HabitacionTextField.setBorder(null);
 
-        Separador2.setForeground(new java.awt.Color(255, 255, 255));
+        Separador.setForeground(new java.awt.Color(255, 255, 255));
 
         Buscar.setBackground(new java.awt.Color(65, 65, 65));
         Buscar.setPreferredSize(new java.awt.Dimension(100, 40));
@@ -76,43 +77,42 @@ public class SeccionHistorial extends javax.swing.JPanel {
         BuscarLabel.setText("Buscar");
         Buscar.add(BuscarLabel, java.awt.BorderLayout.CENTER);
 
-        EstadoLabel.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
-        EstadoLabel.setForeground(new java.awt.Color(255, 255, 255));
-        EstadoLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        EstadoLabel.setText("Historial de Habitaciones");
+        HistoricoLabel.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        HistoricoLabel.setForeground(new java.awt.Color(255, 255, 255));
+        HistoricoLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        HistoricoLabel.setText("Historial de Habitaciones");
 
         Tabla.setBackground(new java.awt.Color(65, 65, 65));
-        Tabla.setForeground(new java.awt.Color(65, 65, 65));
+        Tabla.setForeground(new java.awt.Color(255, 255, 255));
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Nombre", "Apellido"
+                "Cédula", "Nombre", "Apellido", "Email", "Género", "Llegada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         Tabla.setToolTipText("");
+        Tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        Tabla.setAutoscrolls(false);
         Tabla.setGridColor(new java.awt.Color(65, 65, 65));
         Tabla.setSelectionBackground(new java.awt.Color(75, 75, 75));
-        Tabla.setSelectionForeground(new java.awt.Color(75, 75, 75));
+        Tabla.setSelectionForeground(new java.awt.Color(255, 255, 255));
         Tabla.getTableHeader().setResizingAllowed(false);
         Tabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(Tabla);
@@ -124,25 +124,25 @@ public class SeccionHistorial extends javax.swing.JPanel {
             .addGroup(ContainerLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Separador2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(ApellidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Separador, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ContainerLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(ApellidoTextField)))
+                        .addComponent(HabitacionTextField))
+                    .addComponent(HabitacionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
             .addGroup(ContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(EstadoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HistoricoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ContainerLayout.setVerticalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContainerLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(EstadoLabel)
+                .addComponent(HistoricoLabel)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContainerLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -150,11 +150,11 @@ public class SeccionHistorial extends javax.swing.JPanel {
                         .addGap(0, 25, Short.MAX_VALUE))
                     .addGroup(ContainerLayout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(ApellidoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(HabitacionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ApellidoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(HabitacionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Separador2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
@@ -184,17 +184,30 @@ public class SeccionHistorial extends javax.swing.JPanel {
 
     private void BuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarMousePressed
         // TODO add your handling code here:
+        ListaEnlazada list = new ListaEnlazada();
+        
+        Tabla.setModel(new DefaultTableModel(null, new String[]{"Cédula","Nombre","Apellido","Email","Género","Llegada"}));
+        DefaultTableModel model = (DefaultTableModel)Tabla.getModel();
+        
+        String hab = HabitacionTextField.getText();
+        histori.recorridoSpec(list, histori.getRaiz(), hab);
+        
+        for(int i = 0; i < list.size(); i++) {
+            ClienteHospedado target = list.getNodoLE(i).getClient();
+            
+            model.addRow(new String[]{target.ci, target.nombre, target.apellido, target.email, target.genero, target.llegada});
+        }
     }//GEN-LAST:event_BuscarMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ApellidoLabel;
-    private javax.swing.JTextField ApellidoTextField;
     private javax.swing.JPanel Buscar;
     private javax.swing.JLabel BuscarLabel;
     private javax.swing.JPanel Container;
-    private javax.swing.JLabel EstadoLabel;
-    private javax.swing.JSeparator Separador2;
+    private javax.swing.JLabel HabitacionLabel;
+    private javax.swing.JTextField HabitacionTextField;
+    private javax.swing.JLabel HistoricoLabel;
+    private javax.swing.JSeparator Separador;
     private javax.swing.JTable Tabla;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

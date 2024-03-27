@@ -15,4 +15,12 @@ public class Habitacion {
         this.piso = piso;
     }
     
+    public String getNumHab() {
+        return num_hab;
+    }
+    
+    public String getTipoHab() {
+        return tipo_hab;
+    }
+    
 }
