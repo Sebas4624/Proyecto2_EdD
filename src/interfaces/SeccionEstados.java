@@ -193,14 +193,14 @@ public class SeccionEstados extends javax.swing.JPanel {
         try {
             ClienteHospedado target = estados.buscar(nombre, apellido);
         
-            LineaInformacionPrincipal.setText("Actualmente está hospedado en la habitación número: " + target.habitacion);
+            LineaInformacionPrincipal.setText("Actualmente está hospedado en la habitación: " + target.habitacion);
             
             CajaInformacion.setText("   Nombre: " + target.nombre + "\n" +
                                     "   Apellido: " + target.apellido + "\n" +
                                     "   Email: " + target.email + "\n" +
                                     "   Genero: " + target.genero + "\n" +
                                     "   Celular: " + target.celular + "\n" +
-                                    "   Llegada: " + target.llegada + "\n");
+                                    "   Llegada: " + target.llegada);
         }
         catch(Exception e) {
             JOptionPane.showMessageDialog(null, "El cliente no existe o no se encuentra actualmente en el hotel.");

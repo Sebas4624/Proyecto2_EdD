@@ -17,4 +17,8 @@ public class NodoLEHab {
         this.next = next;
     }
     
+    public Habitacion getHab() {
+        return hab;
+    }
+    
 }

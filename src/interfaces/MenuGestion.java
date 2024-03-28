@@ -17,6 +17,8 @@ public class MenuGestion extends javax.swing.JFrame {
     SeccionEstados SecEst;
     SeccionReserva SecRes;
     SeccionHistorial SecHis;
+    SeccionCheckIn SecChki;
+    SeccionCheckOut SecChko;
     
     TablaHash clienteHospedaje;
     TablaHashHab habitaciones;
@@ -283,6 +285,8 @@ public class MenuGestion extends javax.swing.JFrame {
         SecEst = new SeccionEstados(clienteHospedaje);
         SecRes = new SeccionReserva(reservas);
         SecHis = new SeccionHistorial(historico);
+        SecChki = new SeccionCheckIn(reservas, habitaciones, clienteHospedaje);
+        SecChko = new SeccionCheckOut(historico, clienteHospedaje);
         mostrarPanel(SecEst);
         
     }
@@ -322,7 +326,6 @@ public class MenuGestion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(860, 480));
         setResizable(false);
 
         BorderPanel.setBackground(new java.awt.Color(39, 39, 39));
@@ -827,6 +830,7 @@ public class MenuGestion extends javax.swing.JFrame {
 
     private void CheckInMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckInMousePressed
         // TODO add your handling code here:
+        mostrarPanel(SecChki);
     }//GEN-LAST:event_CheckInMousePressed
 
     private void CheckOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckOutMouseEntered
@@ -841,6 +845,7 @@ public class MenuGestion extends javax.swing.JFrame {
 
     private void CheckOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckOutMousePressed
         // TODO add your handling code here:
+        mostrarPanel(SecChko);
     }//GEN-LAST:event_CheckOutMousePressed
     
     
@@ -848,6 +853,7 @@ public class MenuGestion extends javax.swing.JFrame {
     
     
     private void mostrarPanel(JPanel panel) {
+        
         panel.setSize(640,360);
         panel.setLocation(0, 0);
         

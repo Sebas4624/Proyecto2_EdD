@@ -162,7 +162,7 @@ public class SeccionReserva extends javax.swing.JPanel {
                                     "   Salida: " + target.salida + "\n");
         }
         catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "El cliente no existe o no se encuentra actualmente en el hotel.");
+            JOptionPane.showMessageDialog(null, "La cédula no se encuentra en el registro. Asegúrese de colocar la cédula en el formato 'XX.XXX.XXX' ");
         }
     }//GEN-LAST:event_BuscarMousePressed
 
