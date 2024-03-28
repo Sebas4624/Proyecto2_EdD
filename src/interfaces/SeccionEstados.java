@@ -195,7 +195,8 @@ public class SeccionEstados extends javax.swing.JPanel {
         
             LineaInformacionPrincipal.setText("Actualmente está hospedado en la habitación: " + target.habitacion);
             
-            CajaInformacion.setText("   Nombre: " + target.nombre + "\n" +
+            CajaInformacion.setText("   Cédula: " + target.ci + "\n" +
+                                    "   Nombre: " + target.nombre + "\n" +
                                     "   Apellido: " + target.apellido + "\n" +
                                     "   Email: " + target.email + "\n" +
                                     "   Genero: " + target.genero + "\n" +

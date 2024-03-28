@@ -56,8 +56,19 @@ public class MenuGestion extends javax.swing.JFrame {
                         throw new RuntimeException("Something went wrong.");
                     }
                     
-                    String ci_ = checker("");
+                    String ci_;
+                    
+                    try {
+                        ci_ = checker(row[7]);
+                    }
+                    catch(Exception e) {
+                        ci_ = checker("");
+                    }
+                    
                     String habitacion_ = checker(row[0]);
+                    if(habitacion_.equals("") || habitacion_.equals("Desconocido")) {
+                        throw new RuntimeException("Something went wrong.");
+                    }
                     String nombre_ = checker(row[1]);
                     String apellido_ = checker(row[2]);
                     String email_ = checker(row[3]);
@@ -74,19 +85,11 @@ public class MenuGestion extends javax.swing.JFrame {
                     
                     
                     clienteHospedaje.insertarCliente(clienteNuevo);
-                    
-                    
-                    for(String index : row) {
-                        System.out.printf("%-15s", index);
-                    }
-                    System.out.println();
                 }
                 catch(Exception e) {
-                    System.out.println("-------------");
+                    
                 }
             }
-            
-            clienteHospedaje.printer();
             
         }
         catch(Exception e) {
@@ -139,19 +142,11 @@ public class MenuGestion extends javax.swing.JFrame {
                     
                     
                     reservas.insertar(clienteNuevo);
-                    
-                    
-                    for(String index : row) {
-                        System.out.printf("%-15s", index);
-                    }
-                    System.out.println();
                 }
                 catch(Exception e) {
-                    System.out.println("-------------");
+                    
                 }
             }
-            
-            System.out.println(reservas.buscar("13.502.927"));
             
         }
         catch(Exception e) {
@@ -201,19 +196,11 @@ public class MenuGestion extends javax.swing.JFrame {
                     
                     
                     historico.insertar(clienteNuevo);
-                    
-                    
-                    for(String index : row) {
-                        System.out.printf("%-15s", index);
-                    }
-                    System.out.println();
                 }
                 catch(Exception e) {
-                    System.out.println("-------------");
+                    
                 }
             }
-            
-            System.out.println(historico.buscar("3.616.656"));
             
         }
         catch(Exception e) {
@@ -252,19 +239,11 @@ public class MenuGestion extends javax.swing.JFrame {
                     Habitacion habit = new Habitacion(num_hab_, tipo_hab_, piso_);
 
                     habitaciones.insertarHabitacion(habit);
-                    
-                    
-                    for(String index : row) {
-                        System.out.printf("%-15s", index);
-                    }
-                    System.out.println();
                 }
                 catch(Exception e) {
-                    System.out.println("-------------");
+                    
                 }
             }
-            
-            habitaciones.printer();
             
         }
         catch(Exception e) {
@@ -745,6 +724,11 @@ public class MenuGestion extends javax.swing.JFrame {
 
     private void CloseLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseLabelMousePressed
         // TODO add your handling code here:
+        guardarEstados(clienteHospedaje);
+        guardarHabitaciones(habitaciones);
+        guardarHistorico(historico);
+        guardarReservas(reservas);
+        
         System.exit(0);
     }//GEN-LAST:event_CloseLabelMousePressed
 
@@ -847,6 +831,150 @@ public class MenuGestion extends javax.swing.JFrame {
         // TODO add your handling code here:
         mostrarPanel(SecChko);
     }//GEN-LAST:event_CheckOutMousePressed
+    
+    
+    //---//---//---//---//---//---//---//---//---//---//
+    
+    
+    private void guardarEstados(TablaHash th) {
+        String file = "src\\Booking_hotel_estado.csv";
+        BufferedWriter writer = null;
+        
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write("num_hab,primer_nombre,apellido,email,genero,celular,llegada,ci");
+            writer.newLine();
+            
+            for(int i = 0; i < th.tSize; i++) {
+                for(int j = 0; j < th.lista_[i].size(); j++) {
+                    ClienteHospedado save = th.lista_[i].getNodoLE(j).getClient();
+                    
+                    writer.write(save.habitacion + "," + save.nombre + "," +
+                                save.apellido + "," + save.email + "," + 
+                                save.genero + "," + save.celular + "," +
+                                save.llegada + "," + save.ci);
+                    
+                    writer.newLine();
+                }
+            }
+            
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } 
+    }
+    
+    private void guardarHabitaciones(TablaHashHab thh) {
+        String file = "src\\Booking_hotel_habitaciones.csv";
+        BufferedWriter writer = null;
+        
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write("num_hab,tipo_hab,piso");
+            writer.newLine();
+            
+            for(int i = 0; i < thh.tSize; i++) {
+                for(int j = 0; j < thh.lista_[i].size(); j++) {
+                    Habitacion save = thh.lista_[i].getNodoLE(j).getHab();
+                    
+                    writer.write(save.getNumHab() + "," + save.getTipoHab() + "," + save.getPiso());
+                    
+                    writer.newLine();
+                }
+            }
+            
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void guardarHistorico(ArbolBinarioBusqueda abb) {
+        String file = "src\\Booking_hotel_historico.csv";
+        BufferedWriter writer = null;
+        
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write("ci,primer_nombre,apellido,email,genero,llegada,num_hab");
+            writer.newLine();
+            
+            ListaEnlazada list = new ListaEnlazada();
+            
+            abb.recorridoSpec(list, abb.getRaiz());
+            
+            for(int i = 0; i < list.size(); i++) {
+                ClienteHospedado save = list.getNodoLE(i).getClient();
+                
+                writer.write(save.ci + "," + save.nombre + "," +
+                                save.apellido + "," + save.email + "," + 
+                                save.genero + "," + save.llegada + "," +
+                                save.habitacion);
+                    
+                writer.newLine();
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void guardarReservas(ArbolBinarioBusqueda abb) {
+        String file = "src\\Booking_hotel_reservas.csv";
+        BufferedWriter writer = null;
+        
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write("ci,primer_nombre,segundo_nombre,email,genero,tipo_hab,celular,llegada,salida");
+            writer.newLine();
+            
+            ListaEnlazada list = new ListaEnlazada();
+            
+            abb.recorridoSpec(list, abb.getRaiz());
+            
+            for(int i = 0; i < list.size(); i++) {
+                ClienteHospedado save = list.getNodoLE(i).getClient();
+                
+                writer.write(save.ci + "," + save.nombre + "," +
+                                save.apellido + "," + save.email + "," + 
+                                save.genero + "," + save.tipoHabitacion + "," +
+                                save.celular + "," + save.llegada + "," +
+                                save.salida);
+                    
+                writer.newLine();
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     
     
     //---//---//---//---//---//---//---//---//---//---//

@@ -323,11 +323,12 @@ public class SeccionCheckOut extends javax.swing.JPanel {
                 CajaConfirmacion.setText("");
             }
             else {
-                
+                CajaInformacionCliente.setText("");
+                CajaConfirmacion.setText("");
             }
         }
         catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "");
+            JOptionPane.showMessageDialog(null, "El cliente no se encuentra alojado actualmente en el hotel. Compruebe los hospedados actuales.");
         }
     }//GEN-LAST:event_CerrarMousePressed
 

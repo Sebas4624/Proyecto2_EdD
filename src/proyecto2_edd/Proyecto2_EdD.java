@@ -21,6 +21,60 @@ public class Proyecto2_EdD {
         
         MenuGestion wawawa = new MenuGestion();
         
+         //---//---//---//---//---//---//---//---//---//---//---//---//---//---//
+        //---//---//---//---//---//---//---//---//---//---//---//---//---//---//
+        
+        /*
+        String filewa = "src\\prueba.csv";
+        BufferedWriter writer = null;
+        
+        try {
+            writer = new BufferedWriter(new FileWriter(filewa));
+            writer.write("Wazdaa" + "," + "apellido" + "," + "hsudauisd");
+            writer.newLine();
+            writer.write("ALo" + ",");
+            
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        
+        
+        String filewe = "src\\prueba.csv";
+        BufferedReader reader = null;
+        String line = "";
+        
+        try {
+            reader = new BufferedReader(new FileReader(filewe));
+            while((line = reader.readLine()) != null) {
+                String[] row = line.split(",");
+                
+                for(String index : row) {
+                    System.out.printf("%-15s", index);
+                }
+            }
+            
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        */
+        
         /*
         TablaHash tabel = new TablaHash(15); //Clientes Hospedados Actualmente
         ArbolBinarioBusqueda avv = new ArbolBinarioBusqueda(); //Reservas

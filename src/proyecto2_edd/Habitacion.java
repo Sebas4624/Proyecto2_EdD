@@ -23,4 +23,8 @@ public class Habitacion {
         return tipo_hab;
     }
     
+    public String getPiso() {
+        return piso;
+    }
+    
 }
